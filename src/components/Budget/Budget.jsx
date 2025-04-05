@@ -8,7 +8,22 @@ function Budget() {
     const [itemList, setItemList] = useState([]);
 
     const addExpense = () => {
-
+        const newPrice = Number(price);
+        if(newPrice < 0) {
+            alert("Invalid amount");
+        } else {
+            let newExpense = {
+                itemId: itemList.length,
+                itemName: expense,
+                itemPrice: newPrice
+            }
+            let newList = [...itemList, newExpense];
+            let newBudget = budget - newPrice;
+            setBudget(newBudget);
+            setItemList(newList);
+        }
+        setExpense('');
+        setPrice('');
     }
 
     return (
